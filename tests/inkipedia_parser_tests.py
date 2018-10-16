@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 from modules.inkipedia_parser import InkipediaParser
 
-TEST_HTML = 'inkipedia_parser_tests.html'
+TEST_HTML = 'tests/inkipedia_parser_tests.html'
 SALMONRUN_GT = [{'start_time': datetime.datetime(2018, 8, 20, 3,
                                                  tzinfo=datetime.timezone(datetime.timedelta(hours=9))).isoformat(),
                  'end_time': datetime.datetime(2018, 8, 21, 9,

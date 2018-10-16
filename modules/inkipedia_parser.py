@@ -94,7 +94,7 @@ class InkipediaParser(object):
         tables = soup.find_all('table',
                                style=('width: 100%; border-spacing: 0px; '
                                       'overflow: hidden; table-layout: fixed;'))[0]
-        battle_table = re.findall(r'^[\w\d:\-,\' ]+$', tables.text, re.MULTILINE)
+        battle_table = re.findall(r'^[\w\d:,.\-\' ]+$', tables.text, re.MULTILINE)
         return battle_table
 
     def _parse_salmonrun_table(self):
@@ -102,7 +102,7 @@ class InkipediaParser(object):
         tables = soup.find_all('table',
                                style=('width: 100%; border-spacing: 0px; '
                                       'overflow: hidden; table-layout: fixed;'))[1]
-        salmonrun_table = re.findall(r'^[\w\d:\-,\' ]+$', tables.text, re.MULTILINE)
+        salmonrun_table = re.findall(r'^[\w\d:,.\-\' ]+$', tables.text, re.MULTILINE)
         return salmonrun_table
 
 
