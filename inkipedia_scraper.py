@@ -17,7 +17,7 @@ def save_inkipedia_json():
     information = dict()
     information['Salmon Run'] = parser.get_salmonrun_schedule()
     information['Regular Battle'] = parser.get_regular_schedule()
-    information['Reanked Battle'] = parser.get_ranked_schedule()
+    information['Ranked Battle'] = parser.get_ranked_schedule()
     information['League Battle'] = parser.get_league_schedule()
 
     with open(scrap_name, 'w') as f:
