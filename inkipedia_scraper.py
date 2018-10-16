@@ -4,7 +4,7 @@ from modules.inkipedia_crawler import InkipediaCrawler
 from modules.inkipedia_parser import InkipediaParser
 
 
-def main():
+def save_inkipedia_json():
     base_url = 'https://splatoonwiki.org'
     html_file_name = 'latest_inkipedia.html'
     scrap_name = 'latest_inkipedia.json'
@@ -22,4 +22,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    save_inkipedia_json()
+

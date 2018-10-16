@@ -1,3 +1,15 @@
+# IDE
+.idea/
+*.swp
+
+#venv
+venv/
+
+# pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
 *.html
 !tests/inkipedia_parser_tests.html
 *.json
