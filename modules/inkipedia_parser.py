@@ -51,10 +51,10 @@ class InkipediaParser(object):
         battle_table = self._parse_battle_table()
         schedules = list()
         for index in (1, 14):
-            schedule = {'time': battle_table[0 + index].strip(),
-                        'rule': battle_table[4 + index].strip(),
-                        'stage1': battle_table[7 + index].strip(),
-                        'stage2': battle_table[8 + index].strip()}
+            schedule = {'time': battle_table[0 + index],
+                        'rule': battle_table[4 + index],
+                        'stage1': battle_table[7 + index],
+                        'stage2': battle_table[8 + index]}
             schedules.append(schedule)
         for index in range(0, len(schedules)):
             for key in schedules[index].keys():
