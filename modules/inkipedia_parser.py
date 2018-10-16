@@ -105,59 +105,6 @@ class InkipediaParser(object):
         salmonrun_table = re.findall(r'^[\w\d:\-,\' ]+$', tables.text, re.MULTILINE)
         return salmonrun_table
 
-    def _parse_salmonrun_times(self):
-        tz_seoul = datetime.timezone(datetime.timedelta(hours=9))
-        identifiers = ['salmon1', 'salmon2']
-        # Get start end time
-        times = list()
-        for identifier in identifiers:
-            salmon_text = self.soup.find(id=identifier).text
-            # parse time
-            salmon_start = salmon_text.split('-')[0].strip() + ' ' + str(datetime.datetime.now().year)
-            salmon_start = datetime.datetime.strptime(salmon_start, '%b %d %H:%M %Y')
-            salmon_start = salmon_start + datetime.timedelta(hours=9)  # KTC = +9000
-            salmon_start = salmon_start.replace(tzinfo=tz_seoul)
-            salmon_end = salmon_text.split('-')[1].strip()[:-4] + ' ' + str(datetime.datetime.now().year)
-            salmon_end = datetime.datetime.strptime(salmon_end, '%b %d %H:%M %Y')
-            salmon_end = salmon_end + datetime.timedelta(hours=9)  # KTC = +9000
-            salmon_end = salmon_end.replace(tzinfo=tz_seoul)
-            times.append((salmon_start.isoformat(), salmon_end.isoformat()))
-        return times
-
-    def _parse_salmonrun_weapons(self):
-        soup = self.soup
-        identifiers = [0, 1]
-        weapons = list()
-        # parse weapons
-        for identifier in identifiers:
-            weapon = soup.find_all('table',
-                                   style='width: 100%; border-spacing: 0px;')[identifier]
-            weapon = weapon.text.split('\n')
-            four_weapon = list()
-            for text in weapon:
-                if len(text) > 0:
-                    four_weapon.append(text.strip())
-            weapons.append(four_weapon)
-
-        return weapons
-
-    def _parse_salmonrun_stages(self):
-        soup = self.soup
-        identifiers = [0, 1]
-        stages = list()
-        for identifier in identifiers:
-            # parse stage
-            stage = soup.find_all('td',
-                                  style=('background-color: rgba(255, 255, 255, 0.4); '
-                                         'border: 2px solid #ffffff; '
-                                         'border-width: 0px 0px 2px 2px; '
-                                         'border-radius: 0px 0px 0px 8px; '
-                                         'text-align: center;'))
-            stage = stage[identifier].text.strip()
-            stages.append(stage)
-
-        return stages
-
 
 def main():
     parser = InkipediaParser('tests/inkipedia_parser_tests.html')
