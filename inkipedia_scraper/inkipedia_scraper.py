@@ -1,7 +1,7 @@
 import json
 
-from modules.inkipedia_crawler import InkipediaCrawler
-from modules.inkipedia_parser import InkipediaParser
+from .modules.inkipedia_crawler import InkipediaCrawler
+from .modules.inkipedia_parser import InkipediaParser
 
 
 def save_inkipedia_json():
@@ -26,4 +26,3 @@ def save_inkipedia_json():
 
 if __name__ == '__main__':
     save_inkipedia_json()
-

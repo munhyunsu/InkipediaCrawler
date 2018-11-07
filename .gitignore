@@ -11,5 +11,5 @@ __pycache__/
 *$py.class
 
 *.html
-!tests/inkipedia_parser_tests.html
+!inkipedia_scraper/tests/inkipedia_parser_tests.html
 *.json
