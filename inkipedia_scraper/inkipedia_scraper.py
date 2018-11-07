@@ -21,7 +21,7 @@ def save_inkipedia_json():
     information['League Battle'] = parser.get_league_schedule()
 
     with open(scrap_name, 'w') as f:
-        json.dump(information, f, indent=2)
+        json.dump(information, f, indent=2, ensure_ascii=False)
 
 
 if __name__ == '__main__':
