@@ -12,25 +12,37 @@ class InkipediaParser(object):
             self.soup = BeautifulSoup(f.read(), 'html.parser')
 
     def get_salmonrun_schedule(self):
-        salmonrun_table = self._parse_salmonrun_table()
-        start_time1 = salmonrun_table[1].split('-')[0].strip()
-        end_time1 = salmonrun_table[1].split('-')[1].strip()[:-4]
-        start_time2 = salmonrun_table[2].split('-')[0].strip()
-        end_time2 = salmonrun_table[2].split('-')[1].strip()[:-4]
+        salmonrun_div = self._get_salmonrun_div()
+        salmontime1 = salmonrun_div[0]
+        salmontime1 = salmontime1.find('div',
+                          style=('background-color: '
+                                 'rgba(255, 255, 255, 0.65); '
+                                 'text-align: center; font-weight: bold;'))
+        salmontime1 = salmontime1.text
+        start_time1 = salmontime1.split('-')[0].strip()
+        end_time1 = salmontime1.split('-')[1].strip()[:-4]
+        salmontime2 = salmonrun_div[1]
+        salmontime2 = salmontime2.find('div',
+                          style=('background-color: '
+                                 'rgba(255, 255, 255, 0.65); '
+                                 'text-align: center; font-weight: bold;'))
+        salmontime2 = salmontime2.text
+        start_time2 = salmontime2.split('-')[0].strip()
+        end_time2 = salmontime2.split('-')[1].strip()[:-4]
         schedules = [{'start_time': self._get_ktc_iso(start_time1),
                       'end_time': self._get_ktc_iso(end_time1),
-                      'weapon1': salmonrun_table[3],
-                      'weapon2': salmonrun_table[4],
-                      'weapon3': salmonrun_table[5],
-                      'weapon4': salmonrun_table[6],
-                      'stage': salmonrun_table[11]},
+                      'weapon1': salmonrun_div[0].find_all('a')[3].text,
+                      'weapon2': salmonrun_div[0].find_all('a')[5].text,
+                      'weapon3': salmonrun_div[0].find_all('a')[7].text,
+                      'weapon4': salmonrun_div[0].find_all('a')[9].text,
+                      'stage': salmonrun_div[0].find_all('a')[1].text},
                      {'start_time': self._get_ktc_iso(start_time2),
                       'end_time': self._get_ktc_iso(end_time2),
-                      'weapon1': salmonrun_table[7],
-                      'weapon2': salmonrun_table[8],
-                      'weapon3': salmonrun_table[9],
-                      'weapon4': salmonrun_table[10],
-                      'stage': salmonrun_table[12]}]
+                      'weapon1': salmonrun_div[1].find_all('a')[3].text,
+                      'weapon2': salmonrun_div[1].find_all('a')[5].text,
+                      'weapon3': salmonrun_div[1].find_all('a')[7].text,
+                      'weapon4': salmonrun_div[1].find_all('a')[9].text,
+                      'stage': salmonrun_div[1].find_all('a')[1].text}]
         for index in range(0, len(schedules)):
             for key in schedules[index].keys():
                 schedules[index][key] = schedules[index][key].strip()
@@ -93,7 +105,8 @@ class InkipediaParser(object):
         soup = self.soup
         tables = soup.find_all('table',
                                style=('width: 100%; border-spacing: 0px; '
-                                      'overflow: hidden; table-layout: fixed;'))[0]
+                                      'overflow: hidden; table-layout: fixed; '
+                                      'overflow-x: auto;'))[0]
         battle_table = re.findall(r'^[\w\d:,.\-\' ]+$', tables.text, re.MULTILINE)
         return battle_table
 
@@ -104,6 +117,14 @@ class InkipediaParser(object):
                                       'overflow: hidden; table-layout: fixed;'))[1]
         salmonrun_table = re.findall(r'^[\w\d:,.\-\' ]+$', tables.text, re.MULTILINE)
         return salmonrun_table
+
+    def _get_salmonrun_div(self):
+        soup = self.soup
+        divs = soup.find_all('div', 
+                             style=('border: 2px solid #ffffff; '
+                                    'border-radius: 8px; min-width: 300px; '
+                                    'margin: 1px; flex-grow: 1;'))
+        return divs
 
 
 def main():
