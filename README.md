@@ -7,7 +7,6 @@
 
 ## TODO
 - (pending) Splashop 2 information
-- New method to crawl salmonrun
 
 # Created by
 - LuHa(munhyunsu@gmail.com)
