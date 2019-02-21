@@ -7,6 +7,7 @@
 
 ## TODO
 - (pending) Splashop 2 information
+- Re-organize source code
 
 # Created by
 - LuHa(munhyunsu@gmail.com)
