@@ -1,7 +1,7 @@
 import unittest
 import os
 
-from inkipedia_scraper.modules.inkipedia_crawler import InkipediaCrawler
+from inkipedia_scraper.inkipedia_crawler import InkipediaCrawler
 
 
 class InkipediaCrawlerTestCase(unittest.TestCase):

@@ -3,7 +3,7 @@ import datetime
 
 from bs4 import BeautifulSoup
 
-from inkipedia_scraper.modules.inkipedia_parser import InkipediaParser
+from inkipedia_scraper.inkipedia_parser import InkipediaParser
 
 TEST_HTML = 'inkipedia_scraper/tests/inkipedia_parser_tests.html'
 SALMONRUN_GT = [{'start_time': datetime.datetime(2018, 8, 20, 3,
