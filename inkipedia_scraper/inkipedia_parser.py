@@ -60,13 +60,13 @@ class InkipediaParser(object):
         return time_iso.isoformat()
 
     def get_regular_schedule(self):
-        battle_table = self._parse_battle_table()
+        battle_div = self._parse_battle_div()
         schedules = list()
         for index in (1, 14):
-            schedule = {'time': battle_table[0 + index],
-                        'rule': battle_table[4 + index],
-                        'stage1': battle_table[7 + index],
-                        'stage2': battle_table[8 + index]}
+            schedule = {'time': battle_div[0 + index],
+                        'rule': battle_div[2 + index],
+                        'stage1': battle_div[3 + index],
+                        'stage2': battle_div[4 + index]}
             schedules.append(schedule)
         for index in range(0, len(schedules)):
             for key in schedules[index].keys():
@@ -74,13 +74,13 @@ class InkipediaParser(object):
         return schedules
 
     def get_ranked_schedule(self):
-        battle_table = self._parse_battle_table()
+        battle_div = self._parse_battle_div()
         schedules = list()
         for index in (1, 14):
-            schedule = {'time': battle_table[0 + index],
-                        'rule': battle_table[5 + index],
-                        'stage1': battle_table[9 + index],
-                        'stage2': battle_table[10 + index]}
+            schedule = {'time': battle_div[0 + index],
+                        'rule': battle_div[6 + index],
+                        'stage1': battle_div[7 + index],
+                        'stage2': battle_div[8 + index]}
             schedules.append(schedule)
         for index in range(0, len(schedules)):
             for key in schedules[index].keys():
@@ -88,13 +88,13 @@ class InkipediaParser(object):
         return schedules
 
     def get_league_schedule(self):
-        battle_table = self._parse_battle_table()
+        battle_div = self._parse_battle_div()
         schedules = list()
         for index in (1, 14):
-            schedule = {'time': battle_table[0 + index],
-                        'rule': battle_table[6 + index],
-                        'stage1': battle_table[11 + index],
-                        'stage2': battle_table[12 + index]}
+            schedule = {'time': battle_div[0 + index],
+                        'rule': battle_div[10 + index],
+                        'stage1': battle_div[11 + index],
+                        'stage2': battle_div[12 + index]}
             schedules.append(schedule)
         for index in range(0, len(schedules)):
             for key in schedules[index].keys():
@@ -110,6 +110,16 @@ class InkipediaParser(object):
         battle_table = re.findall(r'^[\w\d:,.\-\' ]+$', tables.text, re.MULTILINE)
         return battle_table
 
+    def _parse_battle_div(self):
+        soup = self.soup
+        div = soup.find_all('div',
+                               style=('box-shadow: 0px 0px 15px #ffffff inset; '
+                                      'border-width: 10px 1px 10px 1px; border-style: solid; '
+                                      'border-color: rgb(240, 60, 120); border-radius: 10px; '
+                                      'padding: 15px; margin: 4px;'))[0]
+        battle_text = re.findall(r'^[\w\d:,.\-\' ]+$', div.text, re.MULTILINE)
+        return battle_text
+
     def _parse_salmonrun_table(self):
         soup = self.soup
         tables = soup.find_all('table',
@@ -120,7 +130,7 @@ class InkipediaParser(object):
 
     def _get_salmonrun_div(self):
         soup = self.soup
-        divs = soup.find_all('div', 
+        divs = soup.find_all('div',
                              style=('border: 2px solid #ffffff; '
                                     'border-radius: 8px; min-width: 300px; '
                                     'margin: 1px; flex-grow: 1;'))
@@ -129,8 +139,11 @@ class InkipediaParser(object):
 
 def main():
     parser = InkipediaParser('tests/inkipedia_parser_tests.html')
+    print(parser._get_salmonrun_div())
+    # print(parser._parse_battle_div())
     # print(parser.get_regular_schedule())
-    print(parser._parse_salmonrun_table())
+    # print(parser.get_ranked_schedule())
+    # print(parser.get_league_schedule())
 
 
 if __name__ == '__main__':
