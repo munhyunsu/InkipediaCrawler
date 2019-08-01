@@ -1,10 +1,13 @@
 # InkipediaCrawler
 
+## TODO
+- use pandas read\_html function for easy code
+- gear information crawl
+
 ## Features
 - Crawl Inkipedia
 - Parse inkipedia HTML documents
 - Save data into json
-- pandas read\_html?
 
 # Created by
 - LuHa(munhyunsu@gmail.com)
