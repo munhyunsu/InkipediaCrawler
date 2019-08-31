@@ -1,2 +1,4 @@
 # without version determination
 bs4
+pandas
+
