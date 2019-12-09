@@ -3,6 +3,7 @@
 ## TODO
 - use pandas read\_html function for easy code
 - gear information crawl
+  - [cycling through each item in order of its original release.](https://splatoonwiki.org/wiki/Salmon_Run)
 
 ## Features
 - Crawl Inkipedia
