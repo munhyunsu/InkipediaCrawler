@@ -64,47 +64,47 @@ class InkipediaParser(object):
 
         return time_iso
 
-    def get_regular_schedule(self):
-        battle_div = self._parse_battle_div()
-        schedules = list()
-        for index in (1, 14):
-            schedule = {'time': battle_div[0 + index],
-                        'rule': battle_div[2 + index],
-                        'stage1': battle_div[3 + index],
-                        'stage2': battle_div[4 + index]}
-            schedules.append(schedule)
-        for index in range(0, len(schedules)):
-            for key in schedules[index].keys():
-                schedules[index][key] = schedules[index][key].split(',')[0].strip()
-        return schedules
+#    def get_regular_schedule(self):
+#        battle_div = self._parse_battle_div()
+#        schedules = list()
+#        for index in (1, 14):
+#            schedule = {'time': battle_div[0 + index],
+#                        'rule': battle_div[2 + index],
+#                        'stage1': battle_div[3 + index],
+#                        'stage2': battle_div[4 + index]}
+#            schedules.append(schedule)
+#        for index in range(0, len(schedules)):
+#            for key in schedules[index].keys():
+#                schedules[index][key] = schedules[index][key].split(',')[0].strip()
+#        return schedules
 
-    def get_ranked_schedule(self):
-        battle_div = self._parse_battle_div()
-        schedules = list()
-        for index in (1, 14):
-            schedule = {'time': battle_div[0 + index],
-                        'rule': battle_div[6 + index],
-                        'stage1': battle_div[7 + index],
-                        'stage2': battle_div[8 + index]}
-            schedules.append(schedule)
-        for index in range(0, len(schedules)):
-            for key in schedules[index].keys():
-                schedules[index][key] = schedules[index][key].split(',')[0].strip()
-        return schedules
+#    def get_ranked_schedule(self):
+#        battle_div = self._parse_battle_div()
+#        schedules = list()
+#        for index in (1, 14):
+#            schedule = {'time': battle_div[0 + index],
+#                        'rule': battle_div[6 + index],
+#                        'stage1': battle_div[7 + index],
+#                        'stage2': battle_div[8 + index]}
+#            schedules.append(schedule)
+#        for index in range(0, len(schedules)):
+#            for key in schedules[index].keys():
+#                schedules[index][key] = schedules[index][key].split(',')[0].strip()
+#        return schedules
 
-    def get_league_schedule(self):
-        battle_div = self._parse_battle_div()
-        schedules = list()
-        for index in (1, 14):
-            schedule = {'time': battle_div[0 + index],
-                        'rule': battle_div[10 + index],
-                        'stage1': battle_div[11 + index],
-                        'stage2': battle_div[12 + index]}
-            schedules.append(schedule)
-        for index in range(0, len(schedules)):
-            for key in schedules[index].keys():
-                schedules[index][key] = schedules[index][key].split(',')[0].strip()
-        return schedules
+#    def get_league_schedule(self):
+#        battle_div = self._parse_battle_div()
+#        schedules = list()
+#        for index in (1, 14):
+#            schedule = {'time': battle_div[0 + index],
+#                        'rule': battle_div[10 + index],
+#                        'stage1': battle_div[11 + index],
+#                        'stage2': battle_div[12 + index]}
+#            schedules.append(schedule)
+#        for index in range(0, len(schedules)):
+#            for key in schedules[index].keys():
+#                schedules[index][key] = schedules[index][key].split(',')[0].strip()
+#        return schedules
 
     def _parse_battle_table(self):
         soup = self.soup
@@ -200,6 +200,78 @@ class InkipediaParser(object):
 
         return schedules
 
+    def get_regular_schedule(self):
+        divs = self._get_bubbleboxbg_div()
+        div = divs[1] # 1 is battle schedule
+        light_boxes = div.find_all('div',
+                                   class_='bubbleboxbg-lighter')
+        dark_boxes = div.find_all('div',
+                                  class_='bubbleboxbg-darker')
+        rule1 = light_boxes[3].find_all('a')[0].text.strip()
+        stage11 = dark_boxes[0].find_all('a')[1].text.strip()
+        stage12 = dark_boxes[0].find_all('a')[3].text.strip()
+        rule2 = light_boxes[4].find_all('a')[0].text.strip()
+        stage21 = dark_boxes[1].find_all('a')[1].text.strip()
+        stage22 = dark_boxes[1].find_all('a')[3].text.strip()
+
+        schedules = [{'rule': rule1,
+                      'stage1': stage11,
+                      'stage2': stage12,
+                     },
+                     {'rule': rule2,
+                      'stage1': stage21,
+                      'stage2': stage22,
+                     }]
+        return schedules
+
+    def get_ranked_schedule(self):
+        divs = self._get_bubbleboxbg_div()
+        div = divs[1] # 1 is battle schedule
+        light_boxes = div.find_all('div',
+                                   class_='bubbleboxbg-lighter')
+        dark_boxes = div.find_all('div',
+                                  class_='bubbleboxbg-darker')
+        rule1 = light_boxes[5].find_all('a')[1].text.strip()
+        stage11 = dark_boxes[2].find_all('a')[1].text.strip()
+        stage12 = dark_boxes[2].find_all('a')[3].text.strip()
+        rule2 = light_boxes[6].find_all('a')[1].text.strip()
+        stage21 = dark_boxes[3].find_all('a')[1].text.strip()
+        stage22 = dark_boxes[3].find_all('a')[3].text.strip()
+
+        schedules = [{'rule': rule1,
+                      'stage1': stage11,
+                      'stage2': stage12,
+                     },
+                     {'rule': rule2,
+                      'stage1': stage21,
+                      'stage2': stage22,
+                     }]
+        return schedules
+
+    def get_league_schedule(self):
+        divs = self._get_bubbleboxbg_div()
+        div = divs[1] # 1 is battle schedule
+        light_boxes = div.find_all('div',
+                                   class_='bubbleboxbg-lighter')
+        dark_boxes = div.find_all('div',
+                                  class_='bubbleboxbg-darker')
+        rule1 = light_boxes[7].find_all('a')[1].text.strip()
+        stage11 = dark_boxes[4].find_all('a')[1].text.strip()
+        stage12 = dark_boxes[4].find_all('a')[3].text.strip()
+        rule2 = light_boxes[8].find_all('a')[1].text.strip()
+        stage21 = dark_boxes[5].find_all('a')[1].text.strip()
+        stage22 = dark_boxes[5].find_all('a')[3].text.strip()
+
+        schedules = [{'rule': rule1,
+                      'stage1': stage11,
+                      'stage2': stage12,
+                     },
+                     {'rule': rule2,
+                      'stage1': stage21,
+                      'stage2': stage22,
+                     }]
+        return schedules
+
     def _get_bubbleboxbg_div(self):
         soup = self.soup
         divs = soup.find_all('div',
@@ -210,6 +282,9 @@ class InkipediaParser(object):
 def main():
     parser = InkipediaParser('tests/inkipedia_parser_tests.html')
     print(parser.get_salmonrun_schedule())
+    print(parser.get_regular_schedule())
+    print(parser.get_ranked_schedule())
+    print(parser.get_league_schedule())
 
 if __name__ == '__main__':
     main()
