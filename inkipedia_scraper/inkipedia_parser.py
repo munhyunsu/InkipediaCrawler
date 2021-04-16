@@ -166,12 +166,16 @@ class InkipediaParser(object):
         boxes = div.find_all('div',
                              class_='bubbleboxbg-darker')
         ## Weapons
-        weapon1 = []
-        for a in boxes[1].find_all('a'):
-            weapon1.append(a.text.strip())
-        weapon2 = []
-        for a in boxes[4].find_all('a'):
-            weapon2.append(a.text.strip())
+        weapon1 = [boxes[1].find_all('a')[1].text.strip(),
+                   boxes[1].find_all('a')[3].text.strip(),
+                   boxes[1].find_all('a')[5].text.strip(),
+                   boxes[1].find_all('a')[7].text.strip(),
+                  ]
+        weapon2 = [boxes[4].find_all('a')[1].text.strip(),
+                   boxes[4].find_all('a')[3].text.strip(),
+                   boxes[4].find_all('a')[5].text.strip(),
+                   boxes[4].find_all('a')[7].text.strip(),
+                  ]
         ## States
         stage1 = boxes[0].text.strip()
         stage2 = boxes[3].text.strip()
