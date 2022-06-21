@@ -16,6 +16,10 @@ python3 -m unittest inkipedia_scraper/tests/*_tests.py
 - Parse inkipedia HTML documents
 - Save data into json
 
+## References
+
+- [Nintendo Switch Online App Cookie Reverse-Engineering](https://github.com/frozenpandaman/splatnet2statink/wiki/mitmproxy-instructions)
+
 # Created by
 - LuHa(munhyunsu@gmail.com)
 
