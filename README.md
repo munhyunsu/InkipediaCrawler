@@ -20,6 +20,7 @@ python3 -m unittest inkipedia_scraper/tests/*_tests.py
 
 - [Nintendo Switch Online App Cookie Reverse-Engineering](https://github.com/frozenpandaman/splatnet2statink/wiki/mitmproxy-instructions)
 - [MITM Proxy](https://docs.mitmproxy.org/stable/howto-install-system-trusted-ca-android/)
+- [Stat.Ink](https://github.com/fetus-hina/stat.ink)
 
 # Created by
 - LuHa(munhyunsu@gmail.com)
