@@ -4,3 +4,5 @@
 
 2. Create mitmproxy Android Virtual Device (AVD)
 
+3. Install Nintendo Switch Online App
+
