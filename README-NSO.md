@@ -6,13 +6,6 @@
 
 3. Install Nintendo Switch Online App
 
-4. Launch `mitmweb`
+4. Launch `mitmproxy`
 
-- If we want to use `mitmproxy` do it
-
-- Check used port number
-
-```bash
-sudo netstat -tulpn | grep 0000
-```
 
