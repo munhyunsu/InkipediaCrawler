@@ -8,4 +8,10 @@
 
 4. Launch `mitmproxy`
 
+5. Set AVD proxy
+
+- Click dot-dot-dot
+
+- Setting proxy to mitmproxy (127.0.0.1:8080)
+
 
