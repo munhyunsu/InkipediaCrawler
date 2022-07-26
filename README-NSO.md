@@ -8,10 +8,15 @@
 
 4. Launch `mitmproxy`
 
+- If we use wireshark too, then set a `SSLKEYLOGFILE`
+
+```bash
+SSLKEYLOGFILE="./sslkeylogfile.txt" ./mitmproxy
+```
+
 5. Set AVD proxy
 
 - Click dot-dot-dot
 
 - Setting proxy to mitmproxy (127.0.0.1:8080)
-
 
