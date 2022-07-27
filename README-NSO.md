@@ -24,3 +24,8 @@ SSLKEYLOGFILE="./sslkeylogfile.txt" ./mitmproxy
 
 - If we use wireshark too, Set a `Edit -> Preferences -> Protocols -> TLS -> (Pre)-Master-Secret log filename`
 
+7. Save pcap and mitmproxy
+
+- In `mitmproxy`, Type `w`
+
+- In `wireshark`, `File-Save`
