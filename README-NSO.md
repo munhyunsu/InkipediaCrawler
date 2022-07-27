@@ -22,3 +22,5 @@ SSLKEYLOGFILE="./sslkeylogfile.txt" ./mitmproxy
 
 6. Do some surf to mitmproxy
 
+- If we use wireshark too, Set a `Edit -> Preferences -> Protocols -> TLS -> (Pre)-Master-Secret log filename`
+
