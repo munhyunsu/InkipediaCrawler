@@ -20,3 +20,5 @@ SSLKEYLOGFILE="./sslkeylogfile.txt" ./mitmproxy
 
 - Setting proxy to mitmproxy (127.0.0.1:8080)
 
+6. Do some surf to mitmproxy
+
