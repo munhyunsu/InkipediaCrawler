@@ -29,3 +29,8 @@ SSLKEYLOGFILE="./sslkeylogfile.txt" ./mitmproxy
 - In `mitmproxy`, Type `w`
 
 - In `wireshark`, `File-Save`
+
+# References
+
+- [Nintendo Switch Online App Cookie Reverse-Engineering](https://github.com/frozenpandaman/splatnet2statink/wiki/mitmproxy-instructions)
+- [Wireshark with mitmproxy](https://docs.mitmproxy.org/stable/howto-wireshark-tls/)
